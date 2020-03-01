@@ -2,8 +2,9 @@ import React from 'react';
 import configs from '../configs';
 import { Button, Accordion, Card } from 'react-bootstrap';
 import { autofill } from '../utils/autofill';
+import { FieldList } from './FieldList.jsx';
 
-function List() {
+function AccordionList() {
     return (
         <Accordion>
             {
@@ -26,7 +27,11 @@ function List() {
                                 </Button>
                             </Card.Header>
                             <Accordion.Collapse eventKey={index}>
-                                <Card.Body></Card.Body>
+                                <Card.Body>
+                                    {
+                                        fields ? <FieldList fields={Object.keys(fields)}/> : null
+                                    }
+                                </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                     )
@@ -36,4 +41,4 @@ function List() {
     )
 }
 
-export { List };
+export { AccordionList };
