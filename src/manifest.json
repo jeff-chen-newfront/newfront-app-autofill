@@ -1,0 +1,23 @@
+{
+  "name": "Newfront Autofill",
+  "version": "1.0",
+  "description": "Newfront Chrome Extension to autofill forms",
+  "permissions": ["storage", "tabs", "http://*/*", "https://*/*", "*://*/*"],
+  "browser_action": {
+    "default_title": "Newfront Autofill Chrome Extension",
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "newfront-mark16.png",
+      "32": "newfront-mark32.png",
+      "48": "newfront-mark48.png",
+      "128": "newfront-mark128.png"
+    }
+  },
+  "icons": {
+    "16": "newfront-mark16.png",
+    "32": "newfront-mark32.png",
+    "48": "newfront-mark48.png",
+    "128": "newfront-mark128.png"
+  },
+  "manifest_version": 2
+}
