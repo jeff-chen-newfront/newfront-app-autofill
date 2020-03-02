@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import configs from '../configs';
 import { Button, Accordion, Card } from 'react-bootstrap';
 import { autofill } from '../utils/autofill';
@@ -11,34 +11,48 @@ function AccordionList() {
                 configs.map(({ name, fields }, index) => {
                     console.log(fields);
                     return (
-                        <Card key={name}>
-                            <Card.Header>
-                                <Accordion.Toggle as={Button} variant="link" eventKey={index}>
-                                    {name}
-                                </Accordion.Toggle>
-                                <Button key={name}
-                                    onClick={(e) => {
-                                        autofill(fields);
-                                    }} 
-                                    variant="primary" 
-                                    size="sm"
-                                >
-                                    Apply
-                                </Button>
-                            </Card.Header>
-                            <Accordion.Collapse eventKey={index}>
-                                <Card.Body>
-                                    {
-                                        fields ? <FieldList fields={Object.keys(fields)}/> : null
-                                    }
-                                </Card.Body>
-                            </Accordion.Collapse>
-                        </Card>
+                        <AccordionListItem key={name} name={name} fields={fields} index={index}/>
                     )
                 })
             }
         </Accordion>
     )
+}
+
+function AccordionListItem(props) {
+    const {name, fields, index} = props;
+    const [isLoading, setLoading] = useState(false);
+
+    const handleOnClick = (e) => {
+        setLoading(true);
+        autofill(fields, () => {
+            setLoading(false);
+        });
+    }
+
+    return (
+        <Card>
+            <Card.Header>
+                <Accordion.Toggle as={Button} variant="link" eventKey={index}>
+                    {name}
+                </Accordion.Toggle>
+                <Button key={name}
+                    onClick={handleOnClick} 
+                    variant="primary" 
+                    size="sm"
+                >
+                    {isLoading ? "Loading..." : "Apply" }
+                </Button>
+            </Card.Header>
+            <Accordion.Collapse eventKey={index}>
+                <Card.Body>
+                    {
+                        fields ? <FieldList fields={Object.keys(fields)}/> : null
+                    }
+                </Card.Body>
+            </Accordion.Collapse>
+        </Card>
+    );
 }
 
 export { AccordionList };
