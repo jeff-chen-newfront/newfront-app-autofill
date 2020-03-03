@@ -9,6 +9,7 @@ const fields = {
     naicsCode: () => randomNumberGenerator(2),
     sicCode: () => `${randomNumberGenerator(4)}-${randomNumberGenerator(4)}`,
     cslbLicense: () => randomNumberGenerator(7),
+    cslbState: 'SELECT',
     primaryContactFirstName: faker.name.firstName,
     primaryContactLastName: faker.name.lastName,
     primaryContactRole: faker.name.jobTitle,
@@ -17,7 +18,10 @@ const fields = {
     primaryLocationStreetAddress: faker.address.streetAddress,
     primaryLocationCity: faker.address.city,
     primaryLocationZipCode: faker.address.zipCode,
-    adminNotes: faker.lorem.text,
+    primaryLocationState: 'SELECT',
+    producer: 'SELECT',
+    accountManager: 'SELECT',
+    legalEntityType: 'SELECT',
 };
 
 export default fields;
