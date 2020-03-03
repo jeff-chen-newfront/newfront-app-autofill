@@ -5,7 +5,7 @@ export const autofill = (fields, cb) => {
         console.log(querySelector)
         chrome.tabs.executeScript(null, {
             code: `var element = document.querySelectorAll(\'${querySelector}\');
-                if(element && element.length > 0) element[0].value = \"${value}\";`
+                if(element && element.length > 0) element[0].value = \"${value()}\";`
         }, (result) => {
             if(!result) { autofillError = true; }
         });
